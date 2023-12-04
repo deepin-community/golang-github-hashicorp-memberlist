@@ -1,0 +1,22 @@
+From: Daniel Swarbrick <dswarbrick@debian.org>
+Date: Thu, 20 Jul 2023 22:08:58 +0200
+Subject: Fix untyped int overflow on 32-bit arch
+
+Forwarded: no
+---
+ util_test.go | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/util_test.go b/util_test.go
+index 7de4254..5955320 100644
+--- a/util_test.go
++++ b/util_test.go
+@@ -55,7 +55,7 @@ func TestEncodeDecode(t *testing.T) {
+ func TestRandomOffset(t *testing.T) {
+ 	vals := make(map[int]struct{})
+ 	for i := 0; i < 100; i++ {
+-		offset := randomOffset(2 << 30)
++		offset := randomOffset(1<<31 - 1)
+ 		if _, ok := vals[offset]; ok {
+ 			t.Fatalf("got collision")
+ 		}

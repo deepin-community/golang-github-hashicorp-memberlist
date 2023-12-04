@@ -1,15 +1,47 @@
-Source: template-repository
-Section: unknown
+Source: golang-github-hashicorp-memberlist
+Maintainer: Debian Go Packaging Team <team+pkg-go@tracker.debian.org>
+Uploaders: Tim Potter <tpot@hpe.com>,
+           Dmitry Smirnov <onlyjob@debian.org>,
+Section: golang
+Testsuite: autopkgtest-pkg-go
 Priority: optional
-Maintainer: Tsic404 <liuheng@deepin.org>
-Build-Depends: debhelper (>= 11)
-Standards-Version: 4.1.3
-Homepage: https://github.com/deepin-community/template-repository
-#Vcs-Browser: https://salsa.debian.org/debian/deepin-community-template-repository
-#Vcs-Git: https://salsa.debian.org/debian/deepin-community-template-repository.git
+Standards-Version: 4.6.2
+Build-Depends: debhelper-compat (= 13),
+               dh-sequence-golang,
+               golang-any,
+               golang-github-armon-go-metrics-dev,
+               golang-github-google-btree-dev,
+               golang-github-hashicorp-go-msgpack-dev,
+               golang-github-hashicorp-go-multierror-dev,
+               golang-github-hashicorp-go-sockaddr-dev,
+               golang-github-miekg-dns-dev,
+               golang-github-stretchr-testify-dev,
+Vcs-Browser: https://salsa.debian.org/go-team/packages/golang-github-hashicorp-memberlist
+Vcs-Git: https://salsa.debian.org/go-team/packages/golang-github-hashicorp-memberlist.git
+Homepage: https://github.com/hashicorp/memberlist
+XS-Go-Import-Path: github.com/hashicorp/memberlist
+Rules-Requires-Root: no
 
-Package: template-repository
-Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Package: golang-github-hashicorp-memberlist-dev
+Architecture: all
+Multi-Arch: foreign
+Depends: golang-github-armon-go-metrics-dev,
+         golang-github-google-btree-dev,
+         golang-github-hashicorp-go-msgpack-dev,
+         golang-github-hashicorp-go-multierror-dev,
+         golang-github-hashicorp-go-sockaddr-dev,
+         golang-github-miekg-dns-dev,
+         ${misc:Depends},
+Description: Golang package for gossip based membership and failure detection
+ memberlist is a Go library that manages cluster membership and member failure
+ detection using a gossip based protocol.
+ .
+ The use cases for such a library are far-reaching: all distributed systems
+ require membership, and memberlist is a re-usable solution to managing cluster
+ membership and node failure detection.
+ .
+ memberlist is eventually consistent but converges quickly on average. The speed
+ at which it converges can be heavily tuned via various knobs on the protocol.
+ Node failures are detected and network partitions are partially tolerated by
+ attempting to communicate to potentially dead nodes through multiple routes.
+ This package contains the source.

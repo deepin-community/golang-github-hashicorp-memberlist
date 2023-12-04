@@ -1,0 +1,4 @@
+0001-Vendor-sean--seed.patch
+0002-Skip-failing-TestShuffleNodes.patch
+0003-Skip-failing-TestMemberList_Ping.patch
+0004-Fix-untyped-int-overflow-on-32-bit-arch.patch
